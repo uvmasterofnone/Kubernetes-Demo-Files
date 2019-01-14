@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nextcloud-app
+    env: prod
+  name: deployment-nextcloud
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nextcloud-app
+  template:
+    metadata:
+      labels:
+        app: nextcloud-app
+        env: production
+      name: nextcloud-deployment
+    spec:
+      containers:
+        - image: amd64/nextcloud
+          imagePullPolicy: IfNotPresent
+          name: nextcloud
